@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof (FieldOfView))]
+[CustomEditor (typeof (FieldOfView)), CanEditMultipleObjects]
 public class FOVEditor : Editor
 {
     public void OnSceneGUI()
@@ -22,10 +22,16 @@ public class FOVEditor : Editor
         fov.GetViewDirections(out viewA, out viewB);
 
         Handles.color = Color.red;
-        Handles.DrawLine(center, viewA * radius);
+        Handles.DrawLine(center, center + (Vector3)viewA * radius);
 
         Handles.color = Color.blue;
-        Handles.DrawLine(center, viewB * radius);
+        Handles.DrawLine(center, center + (Vector3)viewB * radius);
+
+        Handles.color = Color.green;
+        foreach (Vector2 fovTargetPos in fov.GetTargetPositionsEnumerator())
+        {
+            Handles.DrawLine(center, fovTargetPos);
+        }
 
         //Handles.DrawSolidArc(center, Vector3.back, viewA, 2 * angle, radius);
     }

@@ -10,17 +10,13 @@ public class FieldOfView: MonoBehaviour
     [SerializeField]
     private float _angle = 30.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private LayerMask _obstacleMask;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private LayerMask _targetMask;
+
+    private List<Vector2> _visibleTargets = new List<Vector2>();
 
     public float GetRadius()
     {
@@ -32,15 +28,68 @@ public class FieldOfView: MonoBehaviour
         return _angle;
     }
 
-    public void GetViewDirections(out Vector2 dirA, out Vector2 dirB)
+    /// <summary>
+    /// Returns bounding vectors of view (up direction by +/- view angle).
+    /// </summary>
+    /// <param name="dirCCW">Normalized direction of view, counterclockwise rotated from up</param>
+    /// <param name="dirCW">Normalized direction of view, clockwise rotated from up</param>
+    /// <returns>Returns an integer based on the passed value.</returns>
+    public void GetViewDirections(out Vector2 dirCCW, out Vector2 dirCW)
     {
-        float zRotation = transform.rotation.eulerAngles.z;
-        Quaternion localToGlobalRot = Quaternion.AngleAxis(zRotation, Vector3.forward);
-        Vector2 globalUp = localToGlobalRot * Vector2.up;
+        // Global-space vector of the transform's up direction
+        Vector2 globalUp = transform.up;
 
         Quaternion fovRotA = Quaternion.AngleAxis(_angle, Vector3.forward);
         Quaternion fovRotB = Quaternion.AngleAxis(-_angle, Vector3.forward);
-        dirA = fovRotA * globalUp;
-        dirB = fovRotB * globalUp;
+
+        // Rotate the up direction by the +/- angle
+        dirCCW = fovRotA * globalUp;
+        dirCW = fovRotB * globalUp;
+    }
+
+    /// <summary>
+    /// Searches for targets, and collects them into interal list
+    /// </summary>
+    public void SearchForTargets()
+    {
+        _visibleTargets.Clear();
+
+        Vector2 pos = transform.position;
+        Collider2D[] targetsInRadius = Physics2D.OverlapCircleAll(pos, _radius, _targetMask);
+
+        for (int i = 0; i < targetsInRadius.Length; i++)
+        {
+            Transform target = targetsInRadius[i].transform;
+            Vector2 targetPos = (Vector2)target.position;
+            Vector3 dirToTarget = (targetPos - pos).normalized;
+            if (Vector3.Angle(transform.up, dirToTarget) < _angle)
+            {
+                float distToTarget = Vector2.Distance(pos, targetPos);
+
+                bool isObjectInTheWay = Physics2D.Raycast(pos, dirToTarget, distToTarget, _obstacleMask);
+                if (!isObjectInTheWay)
+                {
+                    _visibleTargets.Add(targetPos);
+                }
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Returns true if there is at least one target in view
+    /// </summary>
+    public bool CanSeeTarget()
+    {
+
+        return _visibleTargets.Count > 0;
+    }
+
+    public IEnumerable<Vector2> GetTargetPositionsEnumerator()
+    {
+        for (int i = 0; i < _visibleTargets.Count; i++)
+        {
+            yield return _visibleTargets[i];
+        }
     }
 }
