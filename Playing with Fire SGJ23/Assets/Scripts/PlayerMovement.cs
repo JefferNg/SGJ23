@@ -59,8 +59,4 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = direction * sprint;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("collided");
-    }
 }
