@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-/Playing with fire/[Ll]ibrary/
-/Playing with fire/[Tt]emp/
-/Playing with fire/[Oo]bj/
-/Playing with fire/[Bb]uild/
-/Playing with fire/[Bb]uilds/
-/Playing with fire/[Ll]ogs/
-/Playing with fire/[Uu]ser[Ss]ettings/
+/Playing with fire SGJ23/[Ll]ibrary/
+/Playing with fire SGJ23/[Tt]emp/
+/Playing with fire SGJ23/[Oo]bj/
+/Playing with fire SGJ23/[Bb]uild/
+/Playing with fire SGJ23/[Bb]uilds/
+/Playing with fire SGJ23/[Ll]ogs/
+/Playing with fire SGJ23/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
