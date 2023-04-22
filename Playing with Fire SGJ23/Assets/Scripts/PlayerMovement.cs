@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10f;
+    public float sprint = 20f;
     public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,15 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector2(horizontal * speed, vertical * speed);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            rb.velocity = new Vector2(horizontal * sprint, vertical * sprint);
+        }
+        else
+        {
+            rb.velocity = new Vector2(horizontal * speed, vertical * speed);
+        }
+
+        
     }
 }
