@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 5f;
     public float sprint = 20f;
+    public float sprint_cooldown = 5f;
     public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>() as Rigidbody2D;
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -19,9 +20,31 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (sprint_cooldown < 5)
         {
-            rb.velocity = new Vector2(horizontal * sprint, vertical * sprint);
+            sprint_cooldown += Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && sprint_cooldown >= 5)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                dash(Vector2.up);
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                dash(Vector2.left);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                dash(Vector2.down);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                dash(Vector2.right);
+            }
+
+            sprint_cooldown = 0;
         }
         else
         {
@@ -29,5 +52,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+    }
+
+    public void dash(Vector2 direction)
+    {
+        rb.velocity = direction * sprint;
     }
 }
