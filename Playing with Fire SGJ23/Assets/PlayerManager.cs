@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Intel : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,10 +16,11 @@ public class Intel : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        GameObject obj = collision.gameObject;
-        if (obj.name == "Player") {
-            //
-        }
+    public void Die() {
+        Debug.Log("Player dies!");
+    }
+
+    public void CollectIntel() {
+        Debug.Log("Intel collected");
     }
 }
