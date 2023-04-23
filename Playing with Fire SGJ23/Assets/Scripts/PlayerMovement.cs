@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    public float baseSpeed = 5f;
+    private float speed = 5f;
+
     public float sprint = 20f;
-    public float sprint_cooldown = 5f;
+    public float sprint_cooldown_base = 3f;
+    private float sprint_cooldown = 3f;
+    private bool moving = false;
+
     public Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (sprint_cooldown < 5)
+        if (sprint_cooldown < sprint_cooldown_base)
         {
             sprint_cooldown += Time.deltaTime;
         }
@@ -35,38 +41,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector2 inputVector = new Vector2(horizontal, vertical);
+        inputVector.Normalize();
 
-        if (Input.GetKey(KeyCode.LeftShift) && sprint_cooldown >= 5)
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                dash(Vector2.up);
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                dash(Vector2.left);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                dash(Vector2.down);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                dash(Vector2.right);
-            }
-            sprint_cooldown = 0;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && sprint_cooldown >= sprint_cooldown_base) {
+            dash();
         }
-        else
-        {
-            rb.velocity = new Vector2(horizontal * speed, vertical * speed);
-        }
+
+        rb.velocity = inputVector * speed;
+     
+        speed = Mathf.Lerp(speed, baseSpeed, 0.05f);
+        Debug.Log(sprint_cooldown);
     }
 
-    public void dash(Vector2 direction)
+    public void dash()
     {
-        rb.velocity = direction * sprint;
+        speed = sprint;
+        sprint_cooldown = 0;
+        //rb.velocity = direction * sprint;
     }
 
 }
