@@ -12,6 +12,8 @@ public class PatrolAI : MonoBehaviour
 
     private int _index = 0;
 
+    private bool _isIncrementing = true;
+
 
     private void OnDrawGizmosSelected()
     {
@@ -33,9 +35,37 @@ public class PatrolAI : MonoBehaviour
         // If you're close enough to the point, go to the next patrol point
         if (Vector2.Distance(currentPos, _patrolPoints[_index]) < _patrolPointRadius)
         {
-            _index = (_index + 1) % _patrolPoints.Count;
+            changeIndex();
         }
 
         return _patrolPoints[_index];
+    }
+
+    private void changeIndex()
+    {
+        if (_isIncrementing)
+        {
+            if (_index == _patrolPoints.Count - 1)
+            {
+                _isIncrementing = false;
+                _index = _index - 1;
+            }
+            else
+            {
+                _index++;
+            }
+        }
+        else
+        {
+            if (_index == 0)
+            {
+                _isIncrementing = true;
+                _index = _index + 1;
+            }
+            else
+            {
+                _index = _index - 1;
+            }
+        }
     }
 }

@@ -4275,7 +4275,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6476024311054381768, guid: 23a798602cda5674b9d9676d5a7567a5, type: 3}
       propertyPath: _patrolPoints.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6476024311054381768, guid: 23a798602cda5674b9d9676d5a7567a5, type: 3}
       propertyPath: _patrolPoints.Array.data[0].x
@@ -4303,7 +4303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6476024311054381768, guid: 23a798602cda5674b9d9676d5a7567a5, type: 3}
       propertyPath: _patrolPoints.Array.data[3].x
-      value: 19.61
+      value: 19.58
       objectReference: {fileID: 0}
     - target: {fileID: 6476024311054381768, guid: 23a798602cda5674b9d9676d5a7567a5, type: 3}
       propertyPath: _patrolPoints.Array.data[3].y
