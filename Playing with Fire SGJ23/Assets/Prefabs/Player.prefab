@@ -239,9 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aabe0f6ab43c5d4599b6404cefe1460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  sprint: 10
-  sprint_cooldown: 5
+  baseSpeed: 5
+  sprint: 15
   rb: {fileID: 8413491219726443960}
 --- !u!114 &7460070444294513687
 MonoBehaviour:
@@ -255,3 +254,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d7b331dd011700479afa96bff11c147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorCanvas: {fileID: 0}

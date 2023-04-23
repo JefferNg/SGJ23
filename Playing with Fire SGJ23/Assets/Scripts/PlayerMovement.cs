@@ -9,10 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public float baseSpeed = 5f;
     private float speed = 5f;
 
-    public float sprint = 20f;
-    public float sprint_cooldown_base = 3f;
-    private float sprint_cooldown = 3f;
-    private bool moving = false;
+    public float sprint = 15f;
+    public const float sprint_cooldown_base = 2f;
+    //private float sprint_cooldown = sprint_cooldown_base;
+    private bool canSprint = true;
+    private Coroutine sprintCoroutine = null;
 
     public Rigidbody2D rb;
     // Start is called before the first frame update
@@ -24,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (sprint_cooldown < sprint_cooldown_base)
-        {
-            sprint_cooldown += Time.deltaTime;
-        }
+        //if (sprint_cooldown < sprint_cooldown_base)
+        //{
+        //    sprint_cooldown += Time.deltaTime;
+        //}
 
         LookAtMouse();
         Move();
@@ -47,21 +48,39 @@ public class PlayerMovement : MonoBehaviour
         inputVector.Normalize();
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && sprint_cooldown >= sprint_cooldown_base) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canSprint) {
             dash();
         }
 
         rb.velocity = inputVector * speed;
      
         speed = Mathf.Lerp(speed, baseSpeed, 0.05f);
-        Debug.Log(sprint_cooldown);
+        //Debug.Log(sprint_cooldown);
     }
 
     public void dash()
     {
         speed = sprint;
-        sprint_cooldown = 0;
+        //sprint_cooldown = 0;
+        //canSprint = false;
+        sprintCoroutine = StartCoroutine(SprintCooldown(sprint_cooldown_base));
         //rb.velocity = direction * sprint;
     }
 
+    private IEnumerator SprintCooldown(float timer) {
+        canSprint = false;
+
+        while (timer > 0) {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        // draw circle HUD
+        
+        
+        //yield return new WaitForSeconds(timer);
+        canSprint = true;
+       // return null;
+    }
+ 
 }
