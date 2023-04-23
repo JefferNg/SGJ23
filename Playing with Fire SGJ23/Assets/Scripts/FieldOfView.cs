@@ -16,7 +16,20 @@ public class FieldOfView: MonoBehaviour
     [SerializeField]
     private LayerMask _targetMask;
 
+    [SerializeField]
+    private FOVRenderer _renderer;
+
     private List<Vector2> _visibleTargets = new List<Vector2>();
+
+    private void Start()
+    {
+        if (_renderer != null)
+        {
+            Vector2 dirCCW, dirCW;
+            GetViewDirections(out dirCCW, out dirCW);
+            _renderer.Initialize(_radius, _angle, dirCCW, dirCW);
+        }
+    }
 
     public float GetRadius()
     {
