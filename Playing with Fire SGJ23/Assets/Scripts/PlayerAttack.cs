@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
             return;
         if (Input.GetKey(KeyCode.Mouse0) && other.tag == "Enemy")
         {
-            Debug.Log("attack");
+            Destroy(other.gameObject);
             attack_cooldown = 0;
         }
     }
