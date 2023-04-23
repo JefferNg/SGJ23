@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,13 +18,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
         if (sprint_cooldown < 5)
         {
             sprint_cooldown += Time.deltaTime;
         }
+
+        LookAtMouse();
+        Move();
+    }
+
+    private void LookAtMouse()
+    {
+        Vector2 mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.up = (Vector2)mousePos - new Vector2(transform.position.x, transform.position.y);
+    }
+
+    private void Move()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
         if (Input.GetKey(KeyCode.LeftShift) && sprint_cooldown >= 5)
         {
@@ -43,15 +56,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 dash(Vector2.right);
             }
-
             sprint_cooldown = 0;
         }
         else
         {
             rb.velocity = new Vector2(horizontal * speed, vertical * speed);
         }
-
-        
     }
 
     public void dash(Vector2 direction)
@@ -59,8 +69,4 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = direction * sprint;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("collided");
-    }
 }
