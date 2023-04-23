@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JTestScene.unity
     guid: cbedcb72e500fa74c991bdf76792efae
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: ed3c28b79cc119f41bc328df0b37238c
   m_configObjects: {}
