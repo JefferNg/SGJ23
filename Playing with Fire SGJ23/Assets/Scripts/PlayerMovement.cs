@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     //private float sprint_cooldown = sprint_cooldown_base;
     private bool canSprint = true;
     private Coroutine sprintCoroutine = null;
+    private bool doSprint = false;
 
     public Rigidbody2D rb;
 
@@ -31,6 +32,13 @@ public class PlayerMovement : MonoBehaviour
         starSprite.transform.localScale = Vector3.zero;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            doSprint = true;
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -41,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
         LookAtMouse();
         Move();
+        doSprint = false;
     }
 
     private void LookAtMouse()
@@ -56,15 +65,14 @@ public class PlayerMovement : MonoBehaviour
         Vector2 inputVector = new Vector2(horizontal, vertical);
         inputVector.Normalize();
 
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canSprint) {
+        if (doSprint && canSprint) {
+            Debug.Log("Performing Sprinting");
             dash();
         }
 
         rb.velocity = inputVector * speed;
      
         speed = Mathf.Lerp(speed, baseSpeed, 0.05f);
-        //Debug.Log(sprint_cooldown);
     }
 
     public void dash()
@@ -86,8 +94,6 @@ public class PlayerMovement : MonoBehaviour
 
         starAnimator.SetTrigger("Flash");
         // draw circle HUD
-        
-        
         //yield return new WaitForSeconds(timer);
         canSprint = true;
        // return null;
