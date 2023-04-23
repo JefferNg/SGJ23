@@ -310,27 +310,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spyTileAssets_9
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 17f228a2984f1a941bccc0dfb589d4e2
-      internalID: -1685339062
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: spyTileAssets_10
       rect:
         serializedVersion: 2
@@ -347,27 +326,6 @@ TextureImporter:
       bones: []
       spriteID: 1b33f54c84a1d544899e4fab78d7425a
       internalID: -567215214
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: spyTileAssets_11
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 641398c88a4f7a24594304aa49a542ff
-      internalID: -1055177941
       vertices: []
       indices: 
       edges: []
@@ -759,22 +717,30 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spyTileAssets_29
+      name: spyTileAssets_21
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
+        x: 48
+        y: 16
         width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -3, y: 0}
+        - {x: -5, y: 1}
+        - {x: -6, y: 2}
+        - {x: -7, y: 3}
+        - {x: -8, y: 5.183998}
+        - {x: -8, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: 0}
       tessellationDetail: 0
       bones: []
-      spriteID: 05cee9eadf3b6f84d9891d2cdaae29d2
-      internalID: -1169266775
+      spriteID: a5339d94dcf0e944684f75e46bbdc2c0
+      internalID: -370130726
       vertices: []
       indices: 
       edges: []
