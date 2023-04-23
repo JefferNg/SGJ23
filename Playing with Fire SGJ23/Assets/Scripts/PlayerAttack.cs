@@ -8,16 +8,22 @@ public class PlayerAttack : MonoBehaviour
     public event EnemyKilledEvent OnEnemyKilled; 
     [SerializeField] private float attack_cooldown = 3f;
 
-    private void FixedUpdate()
-    {
-        if (attack_cooldown <= 3)
-        {
-            attack_cooldown += Time.deltaTime;
-        }
+    [Header("Sprint Sprite Animation")]
+    [SerializeField]
+    private GameObject starSprite = null;
+    [SerializeField]
+    private Animator starAnimator = null;
+
+    private bool canKnife = true;
+
+    private void Start() {
+        starSprite.transform.localScale = Vector3.zero;
+
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            //starAnimator.SetTrigger("Flash");
             if (attack_cooldown <= 3) {
                 AudioManager.Instance.PlaySoundEffect(AudioManager.Sfx.knife_miss, 0.7f, new Vector2(0.3f, 0.4f));
             } else {
@@ -28,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
         private void OnTriggerStay2D(Collider2D other)
     {
-        if (attack_cooldown <= 3)
+        if (!canKnife)
             return;
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
 
@@ -36,9 +42,24 @@ public class PlayerAttack : MonoBehaviour
                 AudioManager.Instance.PlaySoundEffect(AudioManager.Sfx.knife, 1, new Vector2(0.95f, 1.05f));
                 OnEnemyKilled?.Invoke(other.gameObject);
                 AudioManager.Instance.HuntUpdate(-1);
-                attack_cooldown = 0;
+                StartCoroutine(KillCooldown(attack_cooldown));
             }
         }
+    }
+
+    private IEnumerator KillCooldown(float timer) {
+        canKnife = false;
+
+        while (timer > 0) {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        starAnimator.SetTrigger("Flash");
+        // draw circle HUD
+        //yield return new WaitForSeconds(timer);
+        canKnife = true;
+        // return null;
     }
 
 
