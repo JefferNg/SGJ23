@@ -540,17 +540,17 @@ TextureImporter:
         serializedVersion: 2
         x: 64
         y: 32
-        width: 32
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -14, y: -7}
-        - {x: -14, y: 6}
-        - {x: 14, y: 6}
-        - {x: 14, y: -7}
+      - - {x: -6, y: -7}
+        - {x: -6, y: 6}
+        - {x: 8, y: 6}
+        - {x: 8, y: -7}
       tessellationDetail: 0
       bones: []
       spriteID: 6cae049fe9d331d44a40ee4c9b7b6df2
@@ -741,6 +741,31 @@ TextureImporter:
       bones: []
       spriteID: a5339d94dcf0e944684f75e46bbdc2c0
       internalID: -370130726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spyTileAssets_9
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -7}
+        - {x: -8, y: 6}
+        - {x: 6, y: 6}
+        - {x: 6, y: -7}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9591638c9f862ac428a7dea89adeda9c
+      internalID: -1685339062
       vertices: []
       indices: 
       edges: []
