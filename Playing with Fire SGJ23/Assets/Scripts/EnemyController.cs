@@ -54,7 +54,7 @@ public class EnemyController : MonoBehaviour
     {
         if(_fov.CanSeeTarget())
         {
-            AudioManager.Instance.PlaySongHunt();
+            //AudioManager.Instance.PlaySongHunt();
             AudioManager.Instance.PlaySoundEffect(AudioManager.Sfx.encounter, 0.3f, new Vector2(1, 1));
             AudioManager.Instance.HuntUpdate(1);
             _state = State.Hunt;
@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
     {
         if (!_fov.CanSeeTarget())
         {
-            AudioManager.Instance.PlaySongPatrol();
+            //AudioManager.Instance.PlaySongPatrol();
             AudioManager.Instance.HuntUpdate(-1);
             _state = State.Patrol;
         }

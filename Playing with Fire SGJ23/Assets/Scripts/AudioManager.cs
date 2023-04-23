@@ -92,7 +92,7 @@ public class AudioManager : MonoBehaviour
 
     public void HuntUpdate(int i) {
         huntAmount += i;
-
+        Debug.Log(huntAmount);
         if (huntAmount == 1) {
             PlaySongHunt();
         }
