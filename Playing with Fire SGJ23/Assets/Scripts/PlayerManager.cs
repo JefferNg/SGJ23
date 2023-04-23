@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    private bool intelCollected = false;
+
     void Start()
     {
         
@@ -22,5 +25,11 @@ public class PlayerManager : MonoBehaviour
 
     public void CollectIntel() {
         Debug.Log("Intel collected");
+        intelCollected = true;
     }
+
+    public bool CheckIntel() {
+        return intelCollected;
+    }
+
 }
