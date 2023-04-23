@@ -20,7 +20,10 @@ public class PlayerDeath : MonoBehaviour
         bool isOnDeathLayer = (_deathLayerMask & (1 << collision.gameObject.layer)) != 0;
         if (isOnDeathLayer)
         {
-            _pm.Die();
+            if (AudioManager.Instance.huntAmount > 0) {
+                _pm.Die();
+                
+            }
         }
     }
 }

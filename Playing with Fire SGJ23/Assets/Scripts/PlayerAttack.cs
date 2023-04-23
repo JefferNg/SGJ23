@@ -35,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
             if (other.tag == "Enemy") {
                 AudioManager.Instance.PlaySoundEffect(AudioManager.Sfx.knife, 1, new Vector2(0.95f, 1.05f));
                 OnEnemyKilled?.Invoke(other.gameObject);
+                AudioManager.Instance.HuntUpdate(-1);
                 attack_cooldown = 0;
             }
         }

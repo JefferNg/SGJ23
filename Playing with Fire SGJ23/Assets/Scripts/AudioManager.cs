@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
         encounter
     }
 
+    public int huntAmount = 0;
+
     public AudioClip[] sfxClips;
 
     AudioSource musicSource;
@@ -86,6 +88,17 @@ public class AudioManager : MonoBehaviour
     private IEnumerator DestroySource(AudioSource source) {
         yield return new WaitWhile(() => source.isPlaying);
         Destroy(source);
+    }
+
+    public void HuntUpdate(int i) {
+        huntAmount += i;
+
+        if (huntAmount == 1) {
+            PlaySongHunt();
+        }
+        if (huntAmount == 0) {
+            PlaySongPatrol();
+        }
     }
 
 
