@@ -37,14 +37,14 @@ public class FieldOfView: MonoBehaviour
     public void GetViewDirections(out Vector2 dirCCW, out Vector2 dirCW)
     {
         // Global-space vector of the transform's up direction
-        Vector2 globalUp = transform.up;
+        Vector2 globalRight = transform.right;
 
         Quaternion fovRotA = Quaternion.AngleAxis(_angle, Vector3.forward);
         Quaternion fovRotB = Quaternion.AngleAxis(-_angle, Vector3.forward);
 
         // Rotate the up direction by the +/- angle
-        dirCCW = fovRotA * globalUp;
-        dirCW = fovRotB * globalUp;
+        dirCCW = fovRotA * globalRight;
+        dirCW = fovRotB * globalRight;
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class FieldOfView: MonoBehaviour
             Transform target = targetsInRadius[i].transform;
             Vector2 targetPos = (Vector2)target.position;
             Vector3 dirToTarget = (targetPos - pos).normalized;
-            if (Vector3.Angle(transform.up, dirToTarget) < _angle)
+            if (Vector3.Angle(transform.right, dirToTarget) < _angle)
             {
                 float distToTarget = Vector2.Distance(pos, targetPos);
 
