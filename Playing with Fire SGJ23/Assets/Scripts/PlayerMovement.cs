@@ -16,10 +16,19 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine sprintCoroutine = null;
 
     public Rigidbody2D rb;
+
+    [Header("Sprint Sprite Animation")]
+    [SerializeField]
+    private GameObject starSprite = null;
+    [SerializeField]
+    private Animator starAnimator = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        starSprite.transform.localScale = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -75,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        starAnimator.SetTrigger("Flash");
         // draw circle HUD
         
         
