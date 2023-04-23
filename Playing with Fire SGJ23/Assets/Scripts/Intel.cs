@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Intel : MonoBehaviour
@@ -19,7 +20,12 @@ public class Intel : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
         GameObject obj = collision.gameObject;
         if (obj.name == "Player") {
-            //
+            PlayerManager p = obj.GetComponent<PlayerManager>();
+
+            p.CollectIntel();
+
+            Destroy(this.gameObject);
+
         }
     }
 }
