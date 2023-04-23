@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
 
     private Coroutine _fovSearchCoroutine = null;
     private List<FieldOfView> _enemyFieldsOfView = new List<FieldOfView>();
+    private List<EnemyController> _enemyControllers = new List<EnemyController>();
 
     void Start()
     {
@@ -16,20 +17,33 @@ public class EnemyManager : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
-            FieldOfView fov;
-            if (enemy.TryGetComponent<FieldOfView>(out fov))
-            {
-                _enemyFieldsOfView.Add(fov);
-            }
+            AddEnemy(enemy);
         }
 
         // Kickoff the fov search coroutine
         _fovSearchCoroutine = StartCoroutine(DelayedFOVSearch(_defaultFOVSearchDelay));
     }
 
-    public void RemoveFOV(FieldOfView fov)
+    public void AddEnemy(GameObject enemy)
     {
-        _enemyFieldsOfView.Remove(fov);
+        FieldOfView fov;
+        if (enemy.TryGetComponent<FieldOfView>(out fov))
+        {
+            _enemyFieldsOfView.Add(fov);
+        }
+
+        EnemyController controller;
+        if (enemy.TryGetComponent<EnemyController>(out controller))
+        {
+            _enemyControllers.Add(controller);
+        }
+    }
+
+    public void RemoveEnemy(EnemyController enemy)
+    {
+        _enemyControllers.Remove(enemy);
+        _enemyFieldsOfView.Remove(enemy.GetComponent<FieldOfView>());
+
     }
 
     private IEnumerator DelayedFOVSearch(float delay)
