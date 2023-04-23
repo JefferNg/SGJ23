@@ -10,7 +10,11 @@ public class EscapedScript : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            SceneManager.LoadScene("WinScene");
+            
+            PlayerManager pm = collision.gameObject.GetComponent<PlayerManager>();
+            if (pm.CheckIntel()) {
+                SceneManager.LoadScene("WinScene");
+            }
         }
     }
 
