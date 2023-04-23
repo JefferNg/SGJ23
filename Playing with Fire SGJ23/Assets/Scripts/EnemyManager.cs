@@ -20,8 +20,30 @@ public class EnemyManager : MonoBehaviour
             AddEnemy(enemy);
         }
 
+        // Subscribe to the player kill enemy event
+        PlayerAttack attackScript = FindObjectOfType<PlayerAttack>();
+        if (attackScript != null)
+        {
+            attackScript.OnEnemyKilled += onPlayerKilledEnemy;
+        }
+
         // Kickoff the fov search coroutine
         _fovSearchCoroutine = StartCoroutine(DelayedFOVSearch(_defaultFOVSearchDelay));
+    }
+
+    public void OnDestroy()
+    {
+        // Unsubscribe to the player attack enemy event
+        PlayerAttack attackScript = FindObjectOfType<PlayerAttack>();
+        if (attackScript != null)
+        {
+            attackScript.OnEnemyKilled -= onPlayerKilledEnemy;
+        }
+
+        if (_fovSearchCoroutine != null)
+        {
+            StopCoroutine(_fovSearchCoroutine);
+        }
     }
 
     public void AddEnemy(GameObject enemy)
@@ -57,5 +79,16 @@ public class EnemyManager : MonoBehaviour
             }
             yield return delayTimer;
         }
+    }
+
+    private void onPlayerKilledEnemy(GameObject enemyObject)
+    {
+        EnemyController enemy = null;
+        if (enemyObject.TryGetComponent<EnemyController>(out enemy))
+        {
+            RemoveEnemy(enemy);
+            Destroy(enemyObject);
+        }
+        
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public delegate void EnemyKilledEvent(GameObject enemyObject);
+    public event EnemyKilledEvent OnEnemyKilled; 
     [SerializeField] private float attack_cooldown = 3f;
 
     private void FixedUpdate()
@@ -20,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
             return;
         if (Input.GetKey(KeyCode.Mouse0) && other.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            OnEnemyKilled?.Invoke(other.gameObject);
             attack_cooldown = 0;
         }
     }
