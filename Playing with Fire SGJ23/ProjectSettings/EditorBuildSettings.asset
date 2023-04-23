@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: 6cc4836d5cc53664a8be0da1c7c9ead7
   - enabled: 1
+    path: Assets/Scenes/ControlsScene.unity
+    guid: 9a2eed9a33c01cd4b95c966790d94827
+  - enabled: 1
     path: Assets/Scenes/JTestScene.unity
     guid: cbedcb72e500fa74c991bdf76792efae
   - enabled: 1
