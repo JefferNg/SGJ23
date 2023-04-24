@@ -25,7 +25,7 @@ public class PlayerSprite : MonoBehaviour
     public IEnumerator KnifeAnim() {
         a.runtimeAnimatorController = sKnife;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
 
         a.runtimeAnimatorController = sWalk;
     }
