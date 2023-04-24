@@ -284,6 +284,7 @@ MonoBehaviour:
   attack_cooldown: 3
   starSprite: {fileID: 1418968046166229572}
   starAnimator: {fileID: 6037218104426595244}
+  ps: {fileID: 5794241081354192055}
 --- !u!1 &8413491219726443957
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,8 +300,10 @@ GameObject:
   - component: {fileID: 8413491219726443961}
   - component: {fileID: 8413491219726443960}
   - component: {fileID: 8413491219726443963}
+  - component: {fileID: 5794241081354192055}
   - component: {fileID: 7460070444294513687}
   - component: {fileID: 6131024991926787406}
+  - component: {fileID: 6580599399150916279}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -459,6 +462,20 @@ MonoBehaviour:
   rb: {fileID: 8413491219726443960}
   starSprite: {fileID: 4434327558885637468}
   starAnimator: {fileID: 5335072386718137925}
+--- !u!114 &5794241081354192055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413491219726443957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f18b524cc4b921429db156d93cbf424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sWalk: {fileID: 9100000, guid: dfce1dc95d60f6b4abea2abc7698cd84, type: 2}
+  sKnife: {fileID: 9100000, guid: 8e24db245d2a2b8479d550619c513b9d, type: 2}
 --- !u!114 &7460070444294513687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,3 +509,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &6580599399150916279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413491219726443957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f18b524cc4b921429db156d93cbf424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sWalk: {fileID: 9100000, guid: dfce1dc95d60f6b4abea2abc7698cd84, type: 2}
+  sKnife: {fileID: 9100000, guid: 8e24db245d2a2b8479d550619c513b9d, type: 2}

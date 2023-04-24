@@ -101,5 +101,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void Reset() {
+        huntAmount = 0;
+    }
+
 
 }

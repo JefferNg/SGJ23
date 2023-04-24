@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine sprintCoroutine = null;
     private bool doSprint = false;
 
+  
+
     public Rigidbody2D rb;
 
     [Header("Sprint Sprite Animation")]
@@ -24,10 +26,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator starAnimator = null;
 
+    private SpriteRenderer sr = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        sr = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         starSprite.transform.localScale = Vector3.zero;
     }
@@ -84,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
         //rb.velocity = direction * sprint;
     }
 
+    
+
     private IEnumerator SprintCooldown(float timer) {
         canSprint = false;
 
@@ -98,5 +105,6 @@ public class PlayerMovement : MonoBehaviour
         canSprint = true;
        // return null;
     }
+
  
 }

@@ -14,7 +14,17 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private Animator starAnimator = null;
 
+    public PlayerSprite ps; 
+
+    //private PlayerSprite ps = null;
+
     private bool canKnife = true;
+
+
+    private void Awake() {
+        //ps = gameObject.GetComponent<PlayerSprite>();
+
+    }
 
     private void Start() {
         starSprite.transform.localScale = Vector3.zero;
@@ -24,10 +34,12 @@ public class PlayerAttack : MonoBehaviour
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
             //starAnimator.SetTrigger("Flash");
-            if (attack_cooldown <= 3) {
+            if (!canKnife) {
                 AudioManager.Instance.PlaySoundEffect(AudioManager.Sfx.knife_miss, 0.7f, new Vector2(0.3f, 0.4f));
+                
             } else {
                 AudioManager.Instance.PlaySoundEffect(AudioManager.Sfx.knife_miss, 0.7f, new Vector2(1.4f, 1.5f));
+                StartCoroutine(ps.KnifeAnim());
             }
         }
     }

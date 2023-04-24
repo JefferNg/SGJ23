@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private bool intelCollected = false;
 
     public void Die() {
+        AudioManager.Instance.Reset();
         UnityEngine.SceneManagement.SceneManager.LoadScene("DeathScene");
     }
 
