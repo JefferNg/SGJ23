@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     private bool intelCollected = false;
 
+
     public void Die() {
         AudioManager.Instance.Reset();
         UnityEngine.SceneManagement.SceneManager.LoadScene("DeathScene");
