@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8413491219726443966, guid: 735a47a611f2f75438cdee62b6ae969c, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8413491219726443966, guid: 735a47a611f2f75438cdee62b6ae969c, type: 3}
       propertyPath: m_SortingOrder
@@ -780,7 +780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4236136955337914790, guid: c634195083ebb1e4fa8a55003c1e63f4, type: 3}
       propertyPath: orthographic size
-      value: 5.625
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4236136955337914792, guid: c634195083ebb1e4fa8a55003c1e63f4, type: 3}
       propertyPath: m_Name

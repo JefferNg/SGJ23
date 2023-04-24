@@ -12359,6 +12359,18 @@ PrefabInstance:
       propertyPath: doorCanvas
       value: 
       objectReference: {fileID: 1793885373}
+    - target: {fileID: 8413491219674931862, guid: 735a47a611f2f75438cdee62b6ae969c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413491219674931862, guid: 735a47a611f2f75438cdee62b6ae969c, type: 3}
+      propertyPath: m_Size.y
+      value: 1.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413491219674931862, guid: 735a47a611f2f75438cdee62b6ae969c, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8413491219726443960, guid: 735a47a611f2f75438cdee62b6ae969c, type: 3}
       propertyPath: m_Interpolate
       value: 0
@@ -13162,7 +13174,7 @@ MonoBehaviour:
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_CropFrame: 0
-  m_GridSnapping: 1
+  m_GridSnapping: 2
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -14069,7 +14081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4236136955337914790, guid: c634195083ebb1e4fa8a55003c1e63f4, type: 3}
       propertyPath: orthographic size
-      value: 5.625
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4236136955337914792, guid: c634195083ebb1e4fa8a55003c1e63f4, type: 3}
       propertyPath: m_Name
