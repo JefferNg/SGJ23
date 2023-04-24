@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     public void Die() {
-        Debug.Log("Player dies!");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DeathScene");
     }
 
     public void CollectIntel() {
