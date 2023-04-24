@@ -8,17 +8,6 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     private bool intelCollected = false;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Die() {
         UnityEngine.SceneManagement.SceneManager.LoadScene("DeathScene");
     }
